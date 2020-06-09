@@ -3,11 +3,11 @@ import tensorflow as tf
 # To stop training after 99% accuracy is reached
 class myCallback(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs={}):
-        if(logs.get('acc') > 0.99):
+        if(logs.get('accuracy') > 0.99):
             print("\nReached 99% accuracy so cancelling training!")
             self.model.stop_training = True
 
-callback = myCallback
+callback = myCallback()
 mnist = tf.keras.datasets.mnist
 
 (training_images, training_labels), (test_images, test_labels) = mnist.load_data()
